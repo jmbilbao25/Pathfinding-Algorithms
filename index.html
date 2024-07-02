@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinding Visualizer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+        #controls {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #canvas-container {
+            margin-right: 20px;
+        }
+        #side-panel {
+            width: 300px;
+        }
+        #statistics, #instructions {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        select, button {
+            padding: 8px 12px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        select {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        button:hover, select:hover {
+            background-color: #45a049;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        select:hover {
+            border-color: #999;
+        }
+
+        #comparison-panel {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Pathfinding Visualizer</h1>
+    <div id="controls">
+        <select id="algorithm">
+            <option value="astar">A star/A* Algorithm</option>
+            <option value="dijkstra">Dijkstra's Algorithm</option>
+            <option value="bfs">Breadth First Search (BFS)</option>
+            <option value="greedy">Greedy Best-First Search</option>
+            <option value="dfs">Depth-First Search (DFS)</option>
+            <option value="bibfs">Bidirectional BFS</option>
+            <option value="thetastar">Theta*</option>
+            <option value="bestfirst">Best-First Search</option>
+        </select>
+        <button id="startBtn">Start</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+    <div class="container">
+        <div id="canvas-container">
+            <canvas id="grid" width="800" height="600"></canvas>
+        </div>
+        
+        <div id="side-panel">
+            <div id="statistics">
+                <h3>Statistics: </h3>
+
+            </div>
+            
+            <div id="instructions">
+                <h3>Instructions: </h3>
+                <li>Left-click to add walls, right-click to remove walls</li>
+                <li>Press 'S' and click to place the start node</li>
+                <li>Press 'E' and click to place the end node</li>
+                <li>Select an algorithm and click 'Start' to begin</li>
+                <li>Click 'Reset' to clear the grid</li>
+            </div>
+            <div id="comparison-panel">
+                <h3>Algorithm Comparison</h3>
+                <table id="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Algorithm</th>
+                            <th>Path Length</th>
+                            <th>Steps</th>
+                            <th>Time (ms)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="pathfinding.js"></script>
+</body>
+</html>
+
+
+
